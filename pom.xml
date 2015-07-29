@@ -41,7 +41,6 @@
     <modules>
         <module>utils</module>
         <module>core</module>
-        <module>web</module>
         <module>cli</module>
         <module>providers</module>
         <module>drivers</module>
@@ -386,7 +385,16 @@
                 <artifactId>onos-of-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.onosproject</groupId>
+                <artifactId>onos-ovsdb-lib</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.onosproject</groupId>
+                <artifactId>onos-of-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.onosproject</groupId>
 				<artifactId>onos-app-pcep-api</artifactId>

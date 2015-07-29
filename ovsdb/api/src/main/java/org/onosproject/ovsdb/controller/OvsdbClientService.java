@@ -15,14 +15,23 @@
  */
 package org.onosproject.ovsdb.controller;
 
+import java.util.List;
 import java.util.Set;
 
 import org.onlab.packet.IpAddress;
+import org.onosproject.ovsdb.lib.jsonrpc.OvsdbRPC;
+import org.onosproject.ovsdb.lib.message.OperationResult;
+import org.onosproject.ovsdb.lib.message.TableUpdates;
+import org.onosproject.ovsdb.lib.notation.Row;
+import org.onosproject.ovsdb.lib.operations.Operation;
+import org.onosproject.ovsdb.lib.schema.DatabaseSchema;
+
+import com.google.common.util.concurrent.ListenableFuture;
 
 /**
  * Represents to provider facing side of a node.
  */
-public interface OvsdbClientService {
+public interface OvsdbClientService extends OvsdbRPC {
     /**
      * Gets the node identifier.
      *
@@ -103,5 +112,100 @@ public interface OvsdbClientService {
      * @return true if the node is still connected
      */
     boolean isConnected();
+
+    /**
+     * Gets the Bridge uuid.
+     *
+     * @return bridge uuid, empty if no uuid is find
+     */
+    String getBridgeUuid(String bridgeName);
+
+    /**
+     * Gets the Port uuid.
+     *
+     * @param portName port name
+     * @param bridgeName bridge name
+     * @param bridgeUUID bridge uuid
+     *
+     * @return port uuid, empty if no uuid is find
+     */
+    String getPortUuid(String portName, String bridgeName, String bridgeUUID);
+
+    /**
+     * Gets the Port uuid.
+     *
+     * @param portName port name
+     *
+     * @return interface uuid, empty if no uuid is find
+     */
+    String getInterfaceUuid(String portUuid, String portName);
+
+    /**
+     * Gets the Controller uuid.
+     *
+     * @param controllerName controller name
+     * @param controllerTarget controller target
+     *
+     * @return controller uuid, empty if no uuid is find
+     */
+    String getControllerUuid(String controllerName, String controllerTarget);
+
+    /**
+     * Gets the Controller uuid.
+     *
+     * @param controllerName controller name
+     * @param controllerTarget controller target
+     *
+     * @return controller uuid, empty if no uuid is find
+     */
+    String getOvsUuid(String dbName);
+
+    /**
+     * Gets the ovsdb database schema.
+     *
+     * @return database schema
+     */
+    ListenableFuture<DatabaseSchema> getOvsdbSchema(String dbName);
+
+    /**
+     * Gets the ovsdb table updates.
+     *
+     * @return table updates
+     */
+    ListenableFuture<TableUpdates> monitorTables(String dbName, String id);
+
+    /**
+     * Gets the ovsdb config operation result.
+     *
+     * @return operation results
+     */
+    ListenableFuture<List<OperationResult>> transactConfig(String dbName,
+                                                           List<Operation> operations);
+
+    /**
+     * Gets the ovsdb config operation result.
+     *
+     * @return operation results
+     */
+    DatabaseSchema getDatabaseSchema(String dbSchema);
+
+    /**
+     * Gets the ovsdb row from the local ovsdb store.
+     *
+     * @return row
+     */
+    Row getRow(String dbName, String tableName, String uuid);
+
+    /**
+     * Removes the ovsdb row from the local ovsdb store.
+     *
+     */
+    void removeRow(String dbName, String tableName, String uuid);
+
+    /**
+     * Update the local ovsdb store.
+     *
+     */
+    void updateOvsdbStore(String dbName, String tableName, String uuid, Row row);
 
 }

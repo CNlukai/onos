@@ -72,32 +72,32 @@ public class OvsdbTunnelProvider extends AbstractProvider
 
     @Override
     public void setupTunnel(Tunnel tunnel, Path path) {
-        // TODO: This will be implemented later.
+
     }
 
     @Override
     public void setupTunnel(ElementId srcElement, Tunnel tunnel, Path path) {
-        // TODO: This will be implemented later.
+
     }
 
     @Override
     public void releaseTunnel(Tunnel tunnel) {
-        // TODO: This will be implemented later.
+
     }
 
     @Override
     public void releaseTunnel(ElementId srcElement, Tunnel tunnel) {
-        // TODO: This will be implemented later.
+
     }
 
     @Override
     public void updateTunnel(Tunnel tunnel, Path path) {
-        // TODO: This will be implemented later.
+
     }
 
     @Override
     public void updateTunnel(ElementId srcElement, Tunnel tunnel, Path path) {
-        // TODO: This will be implemented later.
+
     }
 
     @Override
@@ -112,12 +112,11 @@ public class OvsdbTunnelProvider extends AbstractProvider
 
     @Override
     public void tunnelUpdated(TunnelDescription tunnel) {
-        providerService.tunnelUpdated(tunnel);
+
     }
 
     @Override
     public Tunnel tunnelQueryById(TunnelId tunnelId) {
-        // TODO: This will be implemented later.
         return null;
     }
 }

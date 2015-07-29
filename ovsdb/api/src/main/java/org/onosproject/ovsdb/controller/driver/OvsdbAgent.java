@@ -15,8 +15,8 @@
  */
 package org.onosproject.ovsdb.controller.driver;
 
-import org.onosproject.ovsdb.controller.OvsdbNodeId;
 import org.onosproject.ovsdb.controller.OvsdbClientService;
+import org.onosproject.ovsdb.controller.OvsdbNodeId;
 
 /**
  * Responsible for keeping track of the current set of nodes connected to the

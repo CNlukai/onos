@@ -29,11 +29,11 @@ import org.onlab.packet.MacAddress;
 public class DefaultEventSubject implements OvsdbEventSubject {
     private final MacAddress mac;
     private final Set<IpAddress> ips;
-    private final OvsdbPortName portname;
-    private final OvsdbPortNumber portnumber;
-    private final OvsdbDatapathId dpid;
-    private final OvsdbPortType portType;
-    private final OvsdbIfaceId ifaceid;
+    private final String portname;
+    private final long portnumber;
+    private final long dpid;
+    private final String portType;
+    private final String ifaceid;
 
     /**
      * Creates an end-station event subject using the supplied information.
@@ -44,11 +44,10 @@ public class DefaultEventSubject implements OvsdbEventSubject {
      * @param portnumber port number
      * @param dpid ovs dpid
      * @param portType port type
-     * @param ifaceid  vm ifaceid
      */
     public DefaultEventSubject(MacAddress mac, Set<IpAddress> ips,
-                               OvsdbPortName portname, OvsdbPortNumber portnumber, OvsdbDatapathId dpid,
-                               OvsdbPortType portType, OvsdbIfaceId ifaceid) {
+                               String portname, Long portnumber, Long dpid,
+                               String portType, String ifaceid) {
         super();
         this.mac = mac;
         this.ips = ips;
@@ -70,33 +69,33 @@ public class DefaultEventSubject implements OvsdbEventSubject {
     }
 
     @Override
-    public OvsdbPortName portName() {
+    public String portName() {
         return portname;
     }
 
     @Override
-    public OvsdbPortNumber portNumber() {
+    public long portNumber() {
         return portnumber;
     }
 
     @Override
-    public OvsdbPortType portType() {
+    public String portType() {
         return portType;
     }
 
     @Override
-    public OvsdbDatapathId dpid() {
+    public long dpid() {
         return dpid;
     }
 
     @Override
-    public OvsdbIfaceId ifaceid() {
+    public String ifaceid() {
         return ifaceid;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(mac, portname, portnumber, dpid, portType, ifaceid);
+        return Objects.hash(mac, portname, portnumber, dpid, portType);
     }
 
     @Override
@@ -110,8 +109,7 @@ public class DefaultEventSubject implements OvsdbEventSubject {
                     && Objects.equals(this.portname, other.portname)
                     && Objects.equals(this.portnumber, other.portnumber)
                     && Objects.equals(this.dpid, other.dpid)
-                    && Objects.equals(this.portType, other.portType)
-                    && Objects.equals(this.ifaceid, other.ifaceid);
+                    && Objects.equals(this.portType, other.portType);
         }
         return false;
     }
@@ -120,7 +118,6 @@ public class DefaultEventSubject implements OvsdbEventSubject {
     public String toString() {
         return toStringHelper(this).add("mac", mac).add("portname", portname)
                 .add("portnumber", portnumber).add("portType", portType)
-                .add("ipAddresses", ips).add("dpid", dpid).add("ifaceid", ifaceid)
-                .toString();
+                .add("ipAddresses", ips).add("dpid", dpid).toString();
     }
 }

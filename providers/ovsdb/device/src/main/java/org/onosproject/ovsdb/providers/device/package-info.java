@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  *Provider that uses ovsdb controller as a means of infrastructure device discovery.
  *

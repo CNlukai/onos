@@ -111,13 +111,13 @@ public class OvsdbHostProvider extends AbstractProvider implements HostProvider 
             switch (event.type()) {
             case PORT_ADDED:
                 HostId hostId = HostId.hostId(subject.hwAddress(), null);
-                DeviceId deviceId = DeviceId.deviceId(uri(subject.dpid().value()));
+                DeviceId deviceId = DeviceId.deviceId(uri(subject.dpid()));
                 PortNumber portNumber = PortNumber.portNumber(subject
-                        .portNumber().value(), subject.portName().value());
+                        .portNumber(), subject.portName());
                 HostLocation loaction = new HostLocation(deviceId, portNumber,
                                                          0L);
                 DefaultAnnotations annotations = DefaultAnnotations.builder()
-                        .set("ifaceid", subject.ifaceid().value()).build();
+                        .set("ifaceid", subject.ifaceid()).build();
                 HostDescription hostDescription = new DefaultHostDescription(
                                                                              subject.hwAddress(),
                                                                              VlanId.vlanId(),
@@ -137,9 +137,9 @@ public class OvsdbHostProvider extends AbstractProvider implements HostProvider 
 
     }
 
-    public URI uri(String value) {
+    public URI uri(long value) {
         try {
-            return new URI("of", toHex(Long.valueOf(value)), null);
+            return new URI("of", toHex(value), null);
         } catch (URISyntaxException e) {
             return null;
         }
